@@ -9,7 +9,6 @@ interface User {
   email: string;
   username: string;
   height: number;
-  // Добавьте другие поля пользователя
 }
 
 const UserList: React.FC = () => {
@@ -17,7 +16,7 @@ const UserList: React.FC = () => {
   const [showFirstName, setShowFirstName] = useState(true);
   const [showLastName, setShowLastName] = useState(true);
   const [showEmail, setShowEmail] = useState(true);
-  const [showGender, setShowUsername] = useState(true);
+  const [showUsername, setShowUsername] = useState(true);
   const [showHeight, setShowHeight] = useState(true);
 
 
@@ -45,7 +44,7 @@ const UserList: React.FC = () => {
           Show Email
         </label>
         <label>
-          <input type="checkbox" checked={showGender} onChange={() => setShowUsername(!showGender)} />
+          <input type="checkbox" checked={showUsername} onChange={() => setShowUsername(!showUsername)} />
           Show Gender
         </label>
         <label>
@@ -60,7 +59,7 @@ const UserList: React.FC = () => {
             {showFirstName && <th>First Name</th>}
             {showLastName && <th>Last Name</th>}
             {showEmail && <th>Email</th>}
-            {showGender && <th>Username</th>}
+            {showUsername && <th>Username</th>}
             {showHeight && <th>Height</th>}
           </tr>
         </thead>
@@ -73,7 +72,7 @@ const UserList: React.FC = () => {
                 {showFirstName && <td>{user.firstName}</td>}
                 {showLastName && <td>{user.lastName}</td>}
                 {showEmail && <td>{user.email}</td>}
-                {showGender && <td>{user.username}</td>}
+                {showUsername && <td>{user.username}</td>}
                 {showHeight && <td>{user.height}</td>}
               </tr>
             )
