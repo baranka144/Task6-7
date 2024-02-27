@@ -1,13 +1,33 @@
-import React, {useState} from 'react';
-import userData from './data.json';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function UserList() {
+interface User {
+  id: number;
+  image: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  height: number;
+  // Добавьте другие поля пользователя
+}
+
+const UserList: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
   const [showFirstName, setShowFirstName] = useState(true);
   const [showLastName, setShowLastName] = useState(true);
   const [showEmail, setShowEmail] = useState(true);
-  const [showGender, setShowGender] = useState(true);
-  const [showCarModel, setShowCarModel] = useState(true);
+  const [showGender, setShowUsername] = useState(true);
+  const [showHeight, setShowHeight] = useState(true);
+
+
+  useEffect(() => {
+    fetch('https://dummyjson.com/users')
+      .then(res => res.json())
+      .then(data => {
+        setUsers(data.users);
+      });
+  }, []);
 
   return (
     <div className="App">
@@ -25,36 +45,40 @@ function UserList() {
           Show Email
         </label>
         <label>
-          <input type="checkbox" checked={showGender} onChange={() => setShowGender(!showGender)} />
+          <input type="checkbox" checked={showGender} onChange={() => setShowUsername(!showGender)} />
           Show Gender
         </label>
         <label>
-          <input type="checkbox" checked={showCarModel} onChange={() => setShowCarModel(!showCarModel)} />
-          Show Car Model
+          <input type="checkbox" checked={showHeight} onChange={() => setShowHeight(!showHeight)} />
+          Show Height
         </label>
       </div>
       <table className='UserTable'>
         <thead>
           <tr>
+            <th>Image</th>
             {showFirstName && <th>First Name</th>}
             {showLastName && <th>Last Name</th>}
             {showEmail && <th>Email</th>}
-            {showGender && <th>Gender</th>}
-            {showCarModel && <th>Car model</th>}
+            {showGender && <th>Username</th>}
+            {showHeight && <th>Height</th>}
           </tr>
         </thead>
         <tbody>
-          {userData.map(user => {
+        {
+          users.map(user => {
             return (
               <tr key={user.id}>
-                {showFirstName && <td>{user.first_name}</td>}
-                {showLastName && <td>{user.last_name}</td>}
+                {<td><img src={user.image} height="100" width="100"/></td>}
+                {showFirstName && <td>{user.firstName}</td>}
+                {showLastName && <td>{user.lastName}</td>}
                 {showEmail && <td>{user.email}</td>}
-                {showGender && <td>{user.gender}</td>}
-                {showCarModel && <td>{user.car_model}</td>}
+                {showGender && <td>{user.username}</td>}
+                {showHeight && <td>{user.height}</td>}
               </tr>
             )
-          })}
+          })
+        } 
         </tbody>
       </table>
     </div>
