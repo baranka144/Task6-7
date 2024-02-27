@@ -1,11 +1,13 @@
 .App {
   text-align: center;
+  margin: 24px;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -35,4 +37,40 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.UserTable {
+	width: 100%;
+	border: none;
+	margin-bottom: 20px;
+}
+.UserTable thead th {
+	font-weight: bold;
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	background: #d8d8d8;
+	font-size: 14px;
+}
+.UserTable thead tr th:first-child {
+	border-radius: 8px 0 0 8px;
+}
+.UserTable thead tr th:last-child {
+	border-radius: 0 8px 8px 0;
+}
+.UserTable tbody td {
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	font-size: 14px;
+	vertical-align: top;
+}
+.UserTable tbody tr:nth-child(even){
+	background: #f3f3f3;
+}
+.UserTable tbody tr td:first-child {
+	border-radius: 8px 0 0 8px;
+}
+.UserTable tbody tr td:last-child {
+	border-radius: 0 8px 8px 0;
 }
